@@ -20,19 +20,26 @@
 
   <style>
     :root{
-      --bg0:#070A12;
-      --bg1:#0B1022;
+      --bg0:#060812;
+      --bg1:#0A0F26;
+
+      --text:#ECF3FF;
+      --muted: rgba(236,243,255,.76);
+      --muted2: rgba(236,243,255,.60);
+
+      --accent:#6EE7FF;    /* cyan */
+      --accent2:#A78BFA;   /* violet */
+      --accent3:#34D399;   /* green */
+      --accent4:#FF7AD9;   /* pink */
+
+      --stroke: rgba(255,255,255,.14);
       --card: rgba(255,255,255,.06);
-      --stroke: rgba(255,255,255,.12);
-      --text:#EAF0FF;
-      --muted: rgba(234,240,255,.72);
-      --muted2: rgba(234,240,255,.58);
-      --accent:#6EE7FF;   /* cyan */
-      --accent2:#A78BFA;  /* violet */
-      --good:#34D399;
-      --shadow: 0 22px 60px rgba(0,0,0,.55);
+
+      --shadow: 0 22px 70px rgba(0,0,0,.58);
       --radius: 18px;
       --radius2: 26px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
 
     *{box-sizing:border-box}
@@ -42,10 +49,10 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(110,231,255,.18), transparent 60%),
-        radial-gradient(900px 500px at 80% 20%, rgba(167,139,250,.18), transparent 55%),
-        radial-gradient(800px 600px at 50% 100%, rgba(110,231,255,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, #070A12);
+        radial-gradient(1200px 650px at 12% 10%, rgba(110,231,255,.22), transparent 60%),
+        radial-gradient(950px 560px at 85% 18%, rgba(167,139,250,.22), transparent 55%),
+        radial-gradient(900px 650px at 55% 100%, rgba(255,122,217,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, #050714);
       min-height:100vh;
       overflow-x:hidden;
     }
@@ -53,19 +60,65 @@
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
+    /* ====== Animated Aurora Background ====== */
+    .aurora{
+      position:fixed;
+      inset:-20%;
+      pointer-events:none;
+      filter: blur(35px);
+      opacity:.55;
+      z-index:-1;
+    }
+    .blob{
+      position:absolute;
+      width:520px;
+      height:520px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(110,231,255,.75), transparent 62%);
+      animation: float1 12s var(--ease) infinite;
+      mix-blend-mode: screen;
+    }
+    .blob.b2{
+      width:560px; height:560px;
+      left:55%;
+      top:8%;
+      background: radial-gradient(circle at 30% 30%, rgba(167,139,250,.75), transparent 62%);
+      animation: float2 14s var(--ease) infinite;
+    }
+    .blob.b3{
+      width:620px; height:620px;
+      left:20%;
+      top:60%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,122,217,.55), transparent 62%);
+      animation: float3 16s var(--ease) infinite;
+    }
+    @keyframes float1{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(90px, 40px) scale(1.08); }
+    }
+    @keyframes float2{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(-80px, 70px) scale(1.10); }
+    }
+    @keyframes float3{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(60px, -70px) scale(1.06); }
+    }
+
+    /* ====== Layout ====== */
     .container{
       width:min(1120px, 92vw);
       margin:0 auto;
     }
 
-    /* ====== NAV ====== */
+    /* ====== Nav ====== */
     .nav{
       position:sticky;
       top:0;
       z-index:50;
       backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(7,10,18,.84), rgba(7,10,18,.55));
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(6,8,18,.86), rgba(6,8,18,.55));
+      border-bottom: 1px solid rgba(255,255,255,.10);
     }
     .nav-inner{
       display:flex;
@@ -78,16 +131,14 @@
       display:flex;
       align-items:center;
       gap:10px;
-      font-weight:900;
-      letter-spacing:.3px;
+      font-weight:950;
+      letter-spacing:.35px;
       white-space:nowrap;
     }
     .dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 20px rgba(110,231,255,.35);
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent4));
+      box-shadow: 0 0 22px rgba(110,231,255,.35);
     }
     .nav-links{
       display:flex;
@@ -98,17 +149,18 @@
     }
     .nav-links a{
       color:var(--muted);
-      font-weight:700;
+      font-weight:750;
       font-size:14px;
       padding:8px 10px;
       border-radius:10px;
       border:1px solid transparent;
-      transition: all .18s ease;
+      transition: all .2s var(--ease);
     }
     .nav-links a:hover{
       color:var(--text);
-      border-color: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
     }
     .cta{
       display:inline-flex;
@@ -116,18 +168,18 @@
       gap:10px;
       padding:10px 14px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(110,231,255,.14), rgba(167,139,250,.14));
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(135deg, rgba(110,231,255,.18), rgba(255,122,217,.16), rgba(167,139,250,.18));
       color:var(--text);
-      font-weight:900;
+      font-weight:950;
       font-size:14px;
-      transition: transform .18s ease, border-color .18s ease;
-      box-shadow: 0 10px 28px rgba(0,0,0,.30);
+      transition: transform .2s var(--ease), border-color .2s var(--ease);
+      box-shadow: 0 12px 34px rgba(0,0,0,.32);
       white-space:nowrap;
     }
-    .cta:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24);}
+    .cta:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.24);}
 
-    /* ====== HERO ====== */
+    /* ====== Hero ====== */
     .hero{ padding:54px 0 24px; }
     .hero-grid{
       display:grid;
@@ -137,24 +189,32 @@
     }
     .hero-card{
       border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.12);
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
+      transform: translateY(10px);
+      opacity:0;
+      transition: transform .7s var(--ease), opacity .7s var(--ease);
+    }
+    .hero-card.reveal{
+      transform: translateY(0);
+      opacity:1;
     }
     .hero-card::before{
       content:"";
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(600px 200px at 20% 0%, rgba(110,231,255,.20), transparent 55%),
-        radial-gradient(500px 200px at 85% 20%, rgba(167,139,250,.22), transparent 55%);
+        radial-gradient(700px 230px at 18% 0%, rgba(110,231,255,.24), transparent 55%),
+        radial-gradient(650px 230px at 88% 20%, rgba(255,122,217,.20), transparent 55%),
+        radial-gradient(650px 230px at 70% 100%, rgba(167,139,250,.16), transparent 60%);
       pointer-events:none;
-      opacity:.9;
+      opacity:.95;
     }
-    .hero-content{ position:relative; padding:26px 24px; }
 
+    .hero-content{ position:relative; padding:26px 24px; }
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -162,15 +222,15 @@
       padding:8px 12px;
       border-radius:999px;
       background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.14);
       color:var(--muted);
-      font-weight:800;
+      font-weight:900;
       font-size:13px;
       width:fit-content;
     }
     .kicker .pill{
       width:8px; height:8px; border-radius:999px;
-      background: var(--good);
+      background: linear-gradient(135deg, var(--accent3), var(--accent));
       box-shadow: 0 0 18px rgba(52,211,153,.45);
     }
 
@@ -178,7 +238,7 @@
       margin:14px 0 10px;
       font-size: clamp(28px, 4vw, 44px);
       line-height:1.06;
-      letter-spacing:-.6px;
+      letter-spacing:-.7px;
     }
     .subtitle{
       color:var(--muted);
@@ -200,22 +260,22 @@
       gap:10px;
       padding:11px 14px;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
       color:var(--text);
-      font-weight:900;
+      font-weight:950;
       font-size:14px;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
       white-space:nowrap;
     }
     .btn:hover{
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.22);
+      border-color: rgba(255,255,255,.24);
     }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(110,231,255,.20), rgba(167,139,250,.20));
-      border-color: rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(110,231,255,.22), rgba(255,122,217,.18), rgba(167,139,250,.22));
+      border-color: rgba(255,255,255,.20);
     }
 
     .quick-stats{
@@ -229,46 +289,74 @@
       border-radius: 16px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
+      transform: translateY(8px);
+      opacity:0;
+      transition: transform .7s var(--ease), opacity .7s var(--ease);
     }
-    .stat .big{ font-weight:900; font-size:18px; letter-spacing:.2px; }
-    .stat .small{ margin-top:4px; color:var(--muted2); font-weight:700; font-size:12px; line-height:1.3; }
+    .stat.reveal{ transform: translateY(0); opacity:1; }
+    .stat .big{
+      font-weight:950;
+      font-size:18px;
+      letter-spacing:.2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent4), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .stat .small{
+      margin-top:4px;
+      color:var(--muted2);
+      font-weight:800;
+      font-size:12px;
+      line-height:1.3;
+    }
 
-    /* ====== PROFILE CARD (BIGGER PROFILE PHOTO) ====== */
+    /* ====== Profile Card (Name below image + bigger photo) ====== */
     .profile{
       padding:18px;
       display:flex;
       flex-direction:column;
       gap:14px;
       position:relative;
+      text-align:center; /* name centered under image */
     }
-    .profile-top{
-      display:flex;
-      gap:16px;
-      align-items:center;
-    }
-
     .avatar{
-      width:170px;          /* BIGGER */
-      height:170px;         /* BIGGER */
-      border-radius: 28px;
+      width:230px;              /* BIGGER */
+      height:230px;             /* BIGGER */
+      margin: 6px auto 0;       /* center */
+      border-radius: 34px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.22);
       background: rgba(255,255,255,.08);
-      flex:0 0 auto;
-      box-shadow: 0 18px 60px rgba(0,0,0,.50);
+      box-shadow: 0 20px 70px rgba(0,0,0,.55);
       position:relative;
+      transform: translateY(10px) scale(.98);
+      opacity:0;
+      transition: transform .8s var(--ease), opacity .8s var(--ease);
     }
-    .avatar::after{
+    .avatar.reveal{ transform: translateY(0) scale(1); opacity:1; }
+
+    /* animated gradient ring */
+    .avatar::before{
       content:"";
       position:absolute;
-      inset:-2px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(110,231,255,.35), rgba(167,139,250,.35));
-      filter: blur(10px);
-      opacity:.55;
+      inset:-3px;
+      border-radius: 38px;
+      background: conic-gradient(
+        from 180deg,
+        rgba(110,231,255,.75),
+        rgba(255,122,217,.65),
+        rgba(167,139,250,.75),
+        rgba(52,211,153,.65),
+        rgba(110,231,255,.75)
+      );
+      filter: blur(14px);
+      opacity:.65;
+      animation: spin 4.8s linear infinite;
       pointer-events:none;
-      z-index:0;
     }
+    @keyframes spin{ to{ transform: rotate(360deg); } }
+
     .avatar img{
       position:relative;
       z-index:1;
@@ -277,17 +365,23 @@
       object-fit:cover;
       object-position:center;
       transform: scale(1.02);
+      border-radius: 34px;
     }
 
     .profile-meta .name{
-      font-weight:900;
-      font-size:16px;
-      line-height:1.2;
+      font-weight:950;
+      font-size:18px;
+      margin-top: 10px;
+      letter-spacing:.2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent4), var(--accent2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
     .profile-meta .role{
       margin-top:6px;
       color:var(--muted);
-      font-weight:800;
+      font-weight:850;
       font-size:13px;
       line-height:1.35;
     }
@@ -296,20 +390,27 @@
       display:flex;
       flex-wrap:wrap;
       gap:8px;
+      justify-content:center;
     }
     .tag{
       font-size:12px;
-      font-weight:900;
+      font-weight:950;
       color:var(--muted);
       padding:8px 10px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
       user-select:none;
+      transition: transform .2s var(--ease), background .2s var(--ease);
+    }
+    .tag:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.08);
     }
 
     /* ====== Sections ====== */
     section{ padding: 18px 0 0; }
+
     .section-head{
       display:flex;
       align-items:flex-end;
@@ -317,8 +418,18 @@
       gap:16px;
       margin: 18px 0 12px;
     }
-    .section-head h2{ margin:0; font-size:18px; letter-spacing:.2px; }
-    .section-head p{ margin:0; color:var(--muted2); font-weight:700; font-size:13px; line-height:1.4; }
+    .section-head h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted2);
+      font-weight:800;
+      font-size:13px;
+      line-height:1.4;
+    }
 
     .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
     .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
@@ -327,29 +438,36 @@
       border-radius: var(--radius);
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
-      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
       overflow:hidden;
+      transform: translateY(10px);
+      opacity:0;
+      transition: transform .7s var(--ease), opacity .7s var(--ease);
     }
+    .card.reveal{ transform: translateY(0); opacity:1; }
+
     .card-inner{ padding: 16px; }
     .muted{ color: var(--muted); }
-    .tiny{ font-size: 12px; color: var(--muted2); font-weight:650; line-height:1.5; }
+    .tiny{ font-size: 12px; color: var(--muted2); font-weight:700; line-height:1.6; }
 
-    /* ====== Media: smaller images + nice crop ====== */
+    /* ====== Smaller media ====== */
     .media{
       position:relative;
       overflow:hidden;
       border-bottom: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
-      height: 220px;         /* FIXED smaller height */
+      height: 210px;
     }
-    .media.small{ height: 200px; }
+    .media.small{ height: 190px; }
     .media img{
       width:100%;
       height:100%;
       object-fit:cover;
-      filter: saturate(1.05) contrast(1.03);
-      transform: scale(1.01);
+      filter: saturate(1.08) contrast(1.06);
+      transform: scale(1.02);
+      transition: transform .35s var(--ease);
     }
+    .card:hover .media img{ transform: scale(1.06); }
 
     .badge{
       position:absolute;
@@ -363,28 +481,28 @@
       border:1px solid rgba(255,255,255,.16);
       background: rgba(0,0,0,.35);
       backdrop-filter: blur(10px);
-      font-weight:900;
+      font-weight:950;
       font-size:12px;
       color: var(--text);
     }
     .badge .spark{
       width:8px; height:8px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      background: linear-gradient(135deg, var(--accent), var(--accent4));
       box-shadow: 0 0 18px rgba(110,231,255,.35);
     }
 
     .row{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
     .chip{
       font-size:12px;
-      font-weight:900;
-      color: rgba(234,240,255,.86);
+      font-weight:950;
+      color: rgba(236,243,255,.88);
       padding:7px 10px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
     }
 
-    /* ====== “Add more” placeholder card ====== */
+    /* ====== Placeholder “Add more” ====== */
     .placeholder{
       border-style:dashed;
       background: rgba(255,255,255,.03);
@@ -409,14 +527,28 @@
       align-items:center;
       justify-content:center;
       font-size:24px;
-      font-weight:900;
+      font-weight:950;
+      position:relative;
+      overflow:hidden;
+    }
+    .plus::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: conic-gradient(from 0deg, rgba(110,231,255,.35), rgba(255,122,217,.35), rgba(167,139,250,.35), rgba(52,211,153,.35), rgba(110,231,255,.35));
+      animation: spin 4s linear infinite;
+      opacity:.7;
+    }
+    .plus span{
+      position:relative;
+      z-index:1;
     }
 
     footer{
       padding: 22px 0 36px;
       color: var(--muted2);
       text-align:center;
-      font-weight:650;
+      font-weight:750;
       font-size:13px;
     }
 
@@ -427,8 +559,7 @@
       .grid-2{ grid-template-columns: 1fr; }
       .quick-stats{ grid-template-columns: 1fr; }
       .nav-inner{ padding: 12px 0; }
-
-      .avatar{ width:150px; height:150px; }
+      .avatar{ width:200px; height:200px; }
       .media{ height: 200px; }
       .placeholder{ min-height: 280px; }
     }
@@ -436,6 +567,13 @@
 </head>
 
 <body>
+  <!-- Animated background blobs -->
+  <div class="aurora" aria-hidden="true">
+    <div class="blob"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
   <!-- ====== NAV ====== -->
   <div class="nav">
     <div class="container nav-inner">
@@ -457,7 +595,8 @@
   <!-- ====== HERO ====== -->
   <header class="hero">
     <div class="container hero-grid">
-      <div class="hero-card">
+      <!-- Left -->
+      <div class="hero-card" data-reveal>
         <div class="hero-content">
           <div class="kicker">
             <span class="pill"></span>
@@ -479,15 +618,15 @@
           </div>
 
           <div class="quick-stats">
-            <div class="stat">
+            <div class="stat" data-reveal>
               <div class="big">Cybersecurity</div>
               <div class="small">Security mindset • awareness • safe systems</div>
             </div>
-            <div class="stat">
+            <div class="stat" data-reveal>
               <div class="big">Networking</div>
               <div class="small">Protocols • connectivity • network concepts</div>
             </div>
-            <div class="stat">
+            <div class="stat" data-reveal>
               <div class="big">MATLAB</div>
               <div class="small">Design • analysis • modeling workflow</div>
             </div>
@@ -495,15 +634,15 @@
         </div>
       </div>
 
-      <div class="hero-card profile">
-        <div class="profile-top">
-          <div class="avatar">
-            <img src="profile.jpeg" alt="Siam profile photo" />
-          </div>
-          <div class="profile-meta">
-            <div class="name">A.N.M Sammaul Islam Siam</div>
-            <div class="role">Department of ETE, CUET</div>
-          </div>
+      <!-- Right: Profile (name below photo) -->
+      <div class="hero-card profile" data-reveal>
+        <div class="avatar" data-avatar>
+          <img src="profile.jpeg" alt="Siam profile photo" />
+        </div>
+
+        <div class="profile-meta">
+          <div class="name">A.N.M Sammaul Islam Siam</div>
+          <div class="role">Department of ETE, CUET</div>
         </div>
 
         <div class="tags">
@@ -513,23 +652,21 @@
           <span class="tag">Engineering Design</span>
         </div>
 
-        <div class="card" style="margin-top:2px;">
+        <div class="card" data-reveal style="box-shadow:none;">
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:6px;">Quick Bio</div>
+            <div style="font-weight:950; margin-bottom:6px;">Quick Bio</div>
             <div class="tiny">
               I’m an ETE student at CUET with interest in secure systems, networking fundamentals,
-              and MATLAB-based engineering analysis. I like building projects where automation and
-              reliability matter.
+              and MATLAB-based engineering analysis. I like building projects where automation and reliability matter.
             </div>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-reveal style="box-shadow:none;">
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:6px;">Currently Working On</div>
+            <div style="font-weight:950; margin-bottom:6px;">Currently Working On</div>
             <div class="tiny">
-              Strengthening cybersecurity basics, improving documentation, and exploring
-              MATLAB tools for design decisions.
+              Strengthening cybersecurity basics, improving documentation, and exploring MATLAB tools for design decisions.
             </div>
           </div>
         </div>
@@ -547,7 +684,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-reveal>
         <div class="card-inner">
           <p class="muted" style="margin:0; line-height:1.8;">
             Hello! I’m <b>A.N.M Sammaul Islam Siam</b>, studying in the <b>Department of ETE at CUET</b>.
@@ -568,9 +705,9 @@
       </div>
 
       <div class="grid-3">
-        <div class="card">
+        <div class="card" data-reveal>
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:8px;">Cybersecurity</div>
+            <div style="font-weight:950; margin-bottom:8px;">Cybersecurity</div>
             <div class="tiny">Threat awareness • safe practices • security mindset</div>
             <div class="row">
               <span class="chip">Awareness</span>
@@ -580,9 +717,9 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-reveal>
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:8px;">Networking</div>
+            <div style="font-weight:950; margin-bottom:8px;">Networking</div>
             <div class="tiny">Protocols • connectivity • system communication</div>
             <div class="row">
               <span class="chip">Protocols</span>
@@ -592,9 +729,9 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-reveal>
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:8px;">MATLAB</div>
+            <div style="font-weight:950; margin-bottom:8px;">MATLAB</div>
             <div class="tiny">Modeling • analysis • engineering design workflow</div>
             <div class="row">
               <span class="chip">Modeling</span>
@@ -606,7 +743,7 @@
       </div>
     </section>
 
-    <!-- ====== PROJECTS (with placeholders) ====== -->
+    <!-- ====== PROJECTS ====== -->
     <section id="projects">
       <div class="section-head">
         <div>
@@ -616,8 +753,7 @@
       </div>
 
       <div class="grid-2">
-        <!-- Project 1 -->
-        <div class="card">
+        <div class="card" data-reveal>
           <div class="media">
             <img src="project-1.jpeg" alt="6DOF App-controlled Industrial Manipulator project image" />
             <div class="badge"><span class="spark"></span> Project #1</div>
@@ -637,21 +773,19 @@
           </div>
         </div>
 
-        <!-- Placeholder: Add more projects -->
-        <div class="card placeholder">
+        <div class="card placeholder" data-reveal>
           <div class="inside">
-            <div class="plus">+</div>
-            <div style="font-weight:900; margin-bottom:6px;">Add More Projects</div>
+            <div class="plus"><span>+</span></div>
+            <div style="font-weight:950; margin-bottom:6px;">Add More Projects</div>
             <div class="tiny">
-              Upload a new image like <b>project-2.jpeg</b> and copy the Project card
-              to add Project #2, #3, etc.
+              Upload <b>project-2.jpeg</b> and copy the Project card to add Project #2, #3, etc.
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ====== CERTIFICATES (with placeholders) ====== -->
+    <!-- ====== CERTIFICATES ====== -->
     <section id="certificates">
       <div class="section-head">
         <div>
@@ -661,8 +795,7 @@
       </div>
 
       <div class="grid-2">
-        <!-- Certificate 1 -->
-        <div class="card">
+        <div class="card" data-reveal>
           <div class="media small">
             <img src="certificate-1.jpeg" alt="Certificate: Engineering design and analysis with MATLAB" />
             <div class="badge"><span class="spark"></span> Certificate #1</div>
@@ -680,14 +813,12 @@
           </div>
         </div>
 
-        <!-- Placeholder: Add more certificates -->
-        <div class="card placeholder">
+        <div class="card placeholder" data-reveal>
           <div class="inside">
-            <div class="plus">+</div>
-            <div style="font-weight:900; margin-bottom:6px;">Add More Certificates</div>
+            <div class="plus"><span>+</span></div>
+            <div style="font-weight:950; margin-bottom:6px;">Add More Certificates</div>
             <div class="tiny">
-              Upload a new image like <b>certificate-2.jpeg</b> and copy the Certificate card
-              to add Certificate #2, #3, etc.
+              Upload <b>certificate-2.jpeg</b> and copy the Certificate card to add Certificate #2, #3, etc.
             </div>
           </div>
         </div>
@@ -704,13 +835,12 @@
       </div>
 
       <div class="grid-2">
-        <div class="card">
+        <div class="card" data-reveal>
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:8px;">Links</div>
+            <div style="font-weight:950; margin-bottom:8px;">Links</div>
             <p class="tiny" style="margin:0 0 10px;">
               Feel free to connect with me or explore my work.
             </p>
-
             <div class="row">
               <a class="btn" href="http://www.linkedin.com/in/sammaul-siam-3a630b36b" target="_blank" rel="noopener">LinkedIn</a>
               <a class="btn" href="https://github.com/Sammaulsiam" target="_blank" rel="noopener">GitHub</a>
@@ -718,9 +848,9 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-reveal>
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:8px;">Email</div>
+            <div style="font-weight:950; margin-bottom:8px;">Email</div>
             <p class="tiny" style="margin:0 0 12px;">
               Email:
               <a href="mailto:siamcuet21@gmail.com" style="text-decoration:underline;">siamcuet21@gmail.com</a>
@@ -734,15 +864,43 @@
     </section>
 
     <footer>
-      © <span id="year"></span> A.N.M Sammaul Islam Siam • Modern Dark Portfolio
+      © <span id="year"></span> A.N.M Sammaul Islam Siam • Colorful Modern Portfolio
     </footer>
   </main>
 
   <script>
+    // Year
     (function(){
       var y = new Date().getFullYear();
       var el = document.getElementById("year");
       if(el) el.textContent = y;
+    })();
+
+    // Reveal animations on scroll (lightweight)
+    (function(){
+      function reveal(){
+        var items = document.querySelectorAll("[data-reveal]");
+        var winH = window.innerHeight || 800;
+
+        for(var i=0;i<items.length;i++){
+          var r = items[i].getBoundingClientRect();
+          if(r.top < winH - 80){
+            items[i].classList.add("reveal");
+          }
+        }
+
+        var avatar = document.querySelector("[data-avatar]");
+        if(avatar){
+          var ar = avatar.getBoundingClientRect();
+          if(ar.top < winH - 80){
+            avatar.classList.add("reveal");
+          }
+        }
+      }
+
+      window.addEventListener("scroll", reveal);
+      window.addEventListener("load", reveal);
+      reveal();
     })();
   </script>
 </body>
