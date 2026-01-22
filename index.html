@@ -6,7 +6,14 @@
   <title>A.N.M Sammaul Islam Siam | ETE @ CUET</title>
   <meta name="description" content="A.N.M Sammaul Islam Siam — ETE student at CUET. Interests: Cybersecurity, Networking, Engineering Design & Analysis with MATLAB." />
 
-  
+  <!-- Use this exact path structure in your repo:
+      /index.html
+      /assets/
+        /images/
+          profile.jpg
+          project-1.jpg
+          certificate-1.jpg
+   -->
 
   <style>
     :root{
@@ -44,7 +51,6 @@
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
-    /* ====== Layout ====== */
     .container{
       width:min(1120px, 92vw);
       margin:0 auto;
@@ -164,7 +170,9 @@
       width:fit-content;
     }
     .kicker .pill{
-      width:8px; height:8px; border-radius:999px;
+      width:8px;
+      height:8px;
+      border-radius:999px;
       background: var(--good);
       box-shadow: 0 0 18px rgba(52,211,153,.45);
     }
@@ -238,7 +246,7 @@
       line-height:1.3;
     }
 
-    /* Profile Card */
+    /* ====== Profile Card (BIGGER PROFILE IMAGE) ====== */
     .profile{
       padding:18px;
       display:flex;
@@ -248,24 +256,44 @@
     }
     .profile-top{
       display:flex;
-      gap:14px;
+      gap:16px;
       align-items:center;
     }
+
+    /* Bigger + nicer avatar */
     .avatar{
-      width:88px;
-      height:88px;
-      border-radius: 22px;
+      width:130px;               /* increased */
+      height:130px;              /* increased */
+      border-radius: 26px;       /* slightly round */
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.22);
       background: rgba(255,255,255,.08);
       flex:0 0 auto;
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+      position:relative;
+    }
+    /* soft glow ring */
+    .avatar::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(110,231,255,.35), rgba(167,139,250,.35));
+      filter: blur(10px);
+      opacity:.55;
+      pointer-events:none;
+      z-index:0;
     }
     .avatar img{
+      position:relative;
+      z-index:1;
       width:100%;
       height:100%;
       object-fit:cover;
+      object-position: center;
+      transform: scale(1.02);
     }
+
     .profile-meta .name{
       font-weight:900;
       font-size:16px;
@@ -278,6 +306,7 @@
       font-size:13px;
       line-height:1.35;
     }
+
     .tags{
       display:flex;
       flex-wrap:wrap;
@@ -294,10 +323,7 @@
       user-select:none;
     }
 
-    /* ====== Sections ====== */
-    section{
-      padding: 18px 0 0;
-    }
+    section{ padding: 18px 0 0; }
     .section-head{
       display:flex;
       align-items:flex-end;
@@ -328,6 +354,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
+
     .card{
       border-radius: var(--radius);
       border:1px solid rgba(255,255,255,.12);
@@ -335,13 +362,10 @@
       box-shadow: 0 18px 50px rgba(0,0,0,.35);
       overflow:hidden;
     }
-    .card-inner{
-      padding: 16px;
-    }
+    .card-inner{ padding: 16px; }
     .muted{ color: var(--muted); }
     .tiny{ font-size: 12px; color: var(--muted2); font-weight:650; line-height:1.5; }
 
-    /* Project Card */
     .media{
       position:relative;
       overflow:hidden;
@@ -393,27 +417,6 @@
       background: rgba(255,255,255,.06);
     }
 
-    /* Certificate */
-    .cert-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-    }
-    .cert-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .cert-title{
-      font-weight:900;
-      margin:0;
-      font-size:15px;
-      line-height:1.3;
-    }
-
-    /* Footer */
     footer{
       padding: 22px 0 36px;
       color: var(--muted2);
@@ -422,19 +425,21 @@
       font-size:13px;
     }
 
-    /* ====== Responsive ====== */
     @media (max-width: 920px){
       .hero-grid{ grid-template-columns: 1fr; }
       .grid-3{ grid-template-columns: 1fr; }
       .grid-2{ grid-template-columns: 1fr; }
       .quick-stats{ grid-template-columns: 1fr; }
       .nav-inner{ padding: 12px 0; }
+
+      /* Mobile: keep avatar big but not too huge */
+      .avatar{ width:110px; height:110px; border-radius: 24px; }
+      .avatar::after{ border-radius: 26px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- ====== NAV ====== -->
   <div class="nav">
     <div class="container nav-inner">
       <div class="brand">
@@ -447,18 +452,13 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#certificates">Certificates</a>
-        <a class="cta" href="#contact" title="Contact section">
-          Contact
-          <span aria-hidden="true">↗</span>
-        </a>
+        <a class="cta" href="#contact" title="Contact section">Contact <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </div>
 
-  <!-- ====== HERO ====== -->
   <header class="hero">
     <div class="container hero-grid">
-      <!-- Left: Intro -->
       <div class="hero-card">
         <div class="hero-content">
           <div class="kicker">
@@ -497,11 +497,9 @@
         </div>
       </div>
 
-      <!-- Right: Profile -->
       <div class="hero-card profile" aria-label="Profile card">
         <div class="profile-top">
           <div class="avatar">
-            <!-- Replace this image file -->
             <img src="profile.jpeg" alt="Siam profile photo" />
           </div>
           <div class="profile-meta">
@@ -542,7 +540,6 @@
   </header>
 
   <main class="container">
-    <!-- ====== ABOUT ====== -->
     <section id="about">
       <div class="section-head">
         <div>
@@ -562,7 +559,6 @@
       </div>
     </section>
 
-    <!-- ====== SKILLS ====== -->
     <section id="skills">
       <div class="section-head">
         <div>
@@ -610,7 +606,6 @@
       </div>
     </section>
 
-    <!-- ====== PROJECTS ====== -->
     <section id="projects">
       <div class="section-head">
         <div>
@@ -621,7 +616,6 @@
 
       <div class="card">
         <div class="media">
-          <!-- Replace this image file -->
           <img src="project-1.jpeg" alt="6DOF App-controlled Industrial Manipulator project image" />
           <div class="badge"><span class="spark"></span> Featured Project</div>
         </div>
@@ -645,7 +639,6 @@
       </div>
     </section>
 
-    <!-- ====== CERTIFICATES ====== -->
     <section id="certificates">
       <div class="section-head">
         <div>
@@ -654,49 +647,45 @@
         </div>
       </div>
 
-      <div class="cert-grid">
-        <div class="card">
-          <div class="media" style="aspect-ratio: 16/10;">
-            <!-- Replace this image file -->
-            <img src="certificate-1.jpeg" alt="Certificate: Engineering design and analysis with MATLAB" />
-            <div class="badge"><span class="spark"></span> Certificate</div>
-          </div>
+      <div class="card">
+        <div class="media" style="aspect-ratio: 16/10;">
+          <img src="certificate-1.jpeg" alt="Certificate: Engineering design and analysis with MATLAB" />
+          <div class="badge"><span class="spark"></span> Certificate</div>
+        </div>
 
-          <div class="card-inner">
-            <div class="cert-top">
-              <p class="cert-title">Engineering Design and Analysis with MATLAB</p>
-              <span class="tag" title="You can add date later">Verified</span>
-            </div>
-            <p class="tiny" style="margin:8px 0 0;">
-              Focused on applying MATLAB tools for engineering workflows including modeling, analysis, and design decision-making.
+        <div class="card-inner">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+            <p style="font-weight:900; margin:0; font-size:15px; line-height:1.3;">
+              Engineering Design and Analysis with MATLAB
             </p>
+            <span class="tag">Verified</span>
           </div>
+          <p class="tiny" style="margin:8px 0 0;">
+            Focused on applying MATLAB tools for engineering workflows including modeling, analysis, and design decision-making.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ====== CONTACT ====== -->
     <section id="contact">
       <div class="section-head">
         <div>
           <h2>Contact</h2>
-          <p>Add your links and email here</p>
+          <p>Reach me through these links</p>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="card">
           <div class="card-inner">
-            <div style="font-weight:900; margin-bottom:8px;">Let’s connect</div>
+            <div style="font-weight:900; margin-bottom:8px;">Links</div>
             <p class="tiny" style="margin:0 0 10px;">
-              Add your email and social links below. You can edit the placeholders anytime.
+              Feel free to connect with me on LinkedIn or check my GitHub projects.
             </p>
 
             <div class="row">
-              <!-- Replace # with actual links -->
-              <a class="btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
-              <a class="btn" href="#" target="_blank" rel="noopener">Facebook</a>
+              <a class="btn" href="http://www.linkedin.com/in/sammaul-siam-3a630b36b" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn" href="https://github.com/Sammaulsiam" target="_blank" rel="noopener">GitHub</a>
             </div>
           </div>
         </div>
@@ -704,13 +693,13 @@
         <div class="card">
           <div class="card-inner">
             <div style="font-weight:900; margin-bottom:8px;">Email</div>
-            <!-- Replace with real email -->
             <p class="tiny" style="margin:0 0 12px;">
-              Email: <a href="mailto:your-email@example.com" style="text-decoration:underline;">your-email@example.com</a>
+              Email:
+              <a href="mailto:siamcuet21@gmail.com" style="text-decoration:underline;">siamcuet21@gmail.com</a>
             </p>
 
             <div class="tiny">
-              Tip: If you don’t want to show phone number publicly, keep only email + LinkedIn.
+              (Tip: If the mail doesn’t open, double-check spelling. Also you can change the address anytime.)
             </div>
           </div>
         </div>
@@ -718,12 +707,11 @@
     </section>
 
     <footer>
-      © <span id="year"></span> A.N.M Sammaul Islam Siam • Built with a modern dark theme
+      © <span id="year"></span> A.N.M Sammaul Islam Siam • Modern Dark Portfolio
     </footer>
   </main>
 
   <script>
-    // Set current year automatically
     (function(){
       var y = new Date().getFullYear();
       var el = document.getElementById("year");
