@@ -6,13 +6,16 @@
   <title>A.N.M Sammaul Islam Siam | ETE @ CUET</title>
   <meta name="description" content="A.N.M Sammaul Islam Siam — ETE student at CUET. Interests: Cybersecurity, Networking, Engineering Design & Analysis with MATLAB." />
 
-  <!-- Use this exact path structure in your repo:
+  <!-- Folder structure (keep exactly):
       /index.html
       /assets/
         /images/
           profile.jpg
           project-1.jpg
           certificate-1.jpg
+          (optional later)
+          project-2.jpg
+          certificate-2.jpg
    -->
 
   <style>
@@ -20,7 +23,6 @@
       --bg0:#070A12;
       --bg1:#0B1022;
       --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
       --stroke: rgba(255,255,255,.12);
       --text:#EAF0FF;
       --muted: rgba(234,240,255,.72);
@@ -56,7 +58,7 @@
       margin:0 auto;
     }
 
-    /* ====== Top Nav ====== */
+    /* ====== NAV ====== */
     .nav{
       position:sticky;
       top:0;
@@ -76,7 +78,7 @@
       display:flex;
       align-items:center;
       gap:10px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.3px;
       white-space:nowrap;
     }
@@ -96,7 +98,7 @@
     }
     .nav-links a{
       color:var(--muted);
-      font-weight:600;
+      font-weight:700;
       font-size:14px;
       padding:8px 10px;
       border-radius:10px;
@@ -117,7 +119,7 @@
       border:1px solid rgba(255,255,255,.14);
       background: linear-gradient(135deg, rgba(110,231,255,.14), rgba(167,139,250,.14));
       color:var(--text);
-      font-weight:800;
+      font-weight:900;
       font-size:14px;
       transition: transform .18s ease, border-color .18s ease;
       box-shadow: 0 10px 28px rgba(0,0,0,.30);
@@ -125,10 +127,8 @@
     }
     .cta:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24);}
 
-    /* ====== Hero ====== */
-    .hero{
-      padding:54px 0 28px;
-    }
+    /* ====== HERO ====== */
+    .hero{ padding:54px 0 24px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -147,15 +147,14 @@
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(600px 200px at 20% 0%, rgba(110,231,255,.20), transparent 55%),
-                  radial-gradient(500px 200px at 85% 20%, rgba(167,139,250,.22), transparent 55%);
+      background:
+        radial-gradient(600px 200px at 20% 0%, rgba(110,231,255,.20), transparent 55%),
+        radial-gradient(500px 200px at 85% 20%, rgba(167,139,250,.22), transparent 55%);
       pointer-events:none;
       opacity:.9;
     }
-    .hero-content{
-      position:relative;
-      padding:26px 24px;
-    }
+    .hero-content{ position:relative; padding:26px 24px; }
+
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -165,14 +164,12 @@
       background: rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.12);
       color:var(--muted);
-      font-weight:700;
+      font-weight:800;
       font-size:13px;
       width:fit-content;
     }
     .kicker .pill{
-      width:8px;
-      height:8px;
-      border-radius:999px;
+      width:8px; height:8px; border-radius:999px;
       background: var(--good);
       box-shadow: 0 0 18px rgba(52,211,153,.45);
     }
@@ -206,7 +203,7 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       color:var(--text);
-      font-weight:800;
+      font-weight:900;
       font-size:14px;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
       white-space:nowrap;
@@ -233,20 +230,10 @@
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
     }
-    .stat .big{
-      font-weight:900;
-      font-size:18px;
-      letter-spacing:.2px;
-    }
-    .stat .small{
-      margin-top:4px;
-      color:var(--muted2);
-      font-weight:700;
-      font-size:12px;
-      line-height:1.3;
-    }
+    .stat .big{ font-weight:900; font-size:18px; letter-spacing:.2px; }
+    .stat .small{ margin-top:4px; color:var(--muted2); font-weight:700; font-size:12px; line-height:1.3; }
 
-    /* ====== Profile Card (BIGGER PROFILE IMAGE) ====== */
+    /* ====== PROFILE CARD (BIGGER PROFILE PHOTO) ====== */
     .profile{
       padding:18px;
       display:flex;
@@ -260,24 +247,22 @@
       align-items:center;
     }
 
-    /* Bigger + nicer avatar */
     .avatar{
-      width:130px;               /* increased */
-      height:130px;              /* increased */
-      border-radius: 26px;       /* slightly round */
+      width:170px;          /* BIGGER */
+      height:170px;         /* BIGGER */
+      border-radius: 28px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.22);
       background: rgba(255,255,255,.08);
       flex:0 0 auto;
-      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+      box-shadow: 0 18px 60px rgba(0,0,0,.50);
       position:relative;
     }
-    /* soft glow ring */
     .avatar::after{
       content:"";
       position:absolute;
       inset:-2px;
-      border-radius: 28px;
+      border-radius: 30px;
       background: linear-gradient(135deg, rgba(110,231,255,.35), rgba(167,139,250,.35));
       filter: blur(10px);
       opacity:.55;
@@ -290,7 +275,7 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      object-position: center;
+      object-position:center;
       transform: scale(1.02);
     }
 
@@ -302,7 +287,7 @@
     .profile-meta .role{
       margin-top:6px;
       color:var(--muted);
-      font-weight:700;
+      font-weight:800;
       font-size:13px;
       line-height:1.35;
     }
@@ -314,7 +299,7 @@
     }
     .tag{
       font-size:12px;
-      font-weight:800;
+      font-weight:900;
       color:var(--muted);
       padding:8px 10px;
       border-radius: 999px;
@@ -323,6 +308,7 @@
       user-select:none;
     }
 
+    /* ====== Sections ====== */
     section{ padding: 18px 0 0; }
     .section-head{
       display:flex;
@@ -331,29 +317,11 @@
       gap:16px;
       margin: 18px 0 12px;
     }
-    .section-head h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.2px;
-    }
-    .section-head p{
-      margin:0;
-      color: var(--muted2);
-      font-weight:600;
-      font-size: 13px;
-      line-height:1.4;
-    }
+    .section-head h2{ margin:0; font-size:18px; letter-spacing:.2px; }
+    .section-head p{ margin:0; color:var(--muted2); font-weight:700; font-size:13px; line-height:1.4; }
 
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
 
     .card{
       border-radius: var(--radius);
@@ -366,13 +334,15 @@
     .muted{ color: var(--muted); }
     .tiny{ font-size: 12px; color: var(--muted2); font-weight:650; line-height:1.5; }
 
+    /* ====== Media: smaller images + nice crop ====== */
     .media{
       position:relative;
       overflow:hidden;
       border-bottom: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
-      aspect-ratio: 16/9;
+      height: 220px;         /* FIXED smaller height */
     }
+    .media.small{ height: 200px; }
     .media img{
       width:100%;
       height:100%;
@@ -380,6 +350,7 @@
       filter: saturate(1.05) contrast(1.03);
       transform: scale(1.01);
     }
+
     .badge{
       position:absolute;
       top:12px;
@@ -401,20 +372,44 @@
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       box-shadow: 0 0 18px rgba(110,231,255,.35);
     }
-    .row{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
+
+    .row{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
     .chip{
       font-size:12px;
-      font-weight:800;
+      font-weight:900;
       color: rgba(234,240,255,.86);
       padding:7px 10px;
       border-radius: 999px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
+    }
+
+    /* ====== “Add more” placeholder card ====== */
+    .placeholder{
+      border-style:dashed;
+      background: rgba(255,255,255,.03);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 320px;
+    }
+    .placeholder .inside{
+      text-align:center;
+      padding:18px;
+      max-width: 360px;
+    }
+    .plus{
+      width:54px;
+      height:54px;
+      border-radius: 16px;
+      margin: 0 auto 12px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      font-weight:900;
     }
 
     footer{
@@ -425,6 +420,7 @@
       font-size:13px;
     }
 
+    /* ====== Responsive ====== */
     @media (max-width: 920px){
       .hero-grid{ grid-template-columns: 1fr; }
       .grid-3{ grid-template-columns: 1fr; }
@@ -432,14 +428,15 @@
       .quick-stats{ grid-template-columns: 1fr; }
       .nav-inner{ padding: 12px 0; }
 
-      /* Mobile: keep avatar big but not too huge */
-      .avatar{ width:110px; height:110px; border-radius: 24px; }
-      .avatar::after{ border-radius: 26px; }
+      .avatar{ width:150px; height:150px; }
+      .media{ height: 200px; }
+      .placeholder{ min-height: 280px; }
     }
   </style>
 </head>
 
 <body>
+  <!-- ====== NAV ====== -->
   <div class="nav">
     <div class="container nav-inner">
       <div class="brand">
@@ -452,11 +449,12 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#certificates">Certificates</a>
-        <a class="cta" href="#contact" title="Contact section">Contact <span aria-hidden="true">↗</span></a>
+        <a class="cta" href="#contact">Contact <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </div>
 
+  <!-- ====== HERO ====== -->
   <header class="hero">
     <div class="container hero-grid">
       <div class="hero-card">
@@ -475,29 +473,29 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#projects">View Project</a>
-            <a class="btn" href="#certificates">See Certificate</a>
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#certificates">Certificates</a>
             <a class="btn" href="#contact">Get in Touch</a>
           </div>
 
           <div class="quick-stats">
             <div class="stat">
               <div class="big">Cybersecurity</div>
-              <div class="small">Basics, security mindset, safe system thinking</div>
+              <div class="small">Security mindset • awareness • safe systems</div>
             </div>
             <div class="stat">
               <div class="big">Networking</div>
-              <div class="small">Fundamentals, protocols, connectivity concepts</div>
+              <div class="small">Protocols • connectivity • network concepts</div>
             </div>
             <div class="stat">
               <div class="big">MATLAB</div>
-              <div class="small">Engineering design & analysis workflow</div>
+              <div class="small">Design • analysis • modeling workflow</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="hero-card profile" aria-label="Profile card">
+      <div class="hero-card profile">
         <div class="profile-top">
           <div class="avatar">
             <img src="profile.jpeg" alt="Siam profile photo" />
@@ -508,7 +506,7 @@
           </div>
         </div>
 
-        <div class="tags" aria-label="Highlights">
+        <div class="tags">
           <span class="tag">Cybersecurity</span>
           <span class="tag">Networking</span>
           <span class="tag">MATLAB</span>
@@ -519,9 +517,9 @@
           <div class="card-inner">
             <div style="font-weight:900; margin-bottom:6px;">Quick Bio</div>
             <div class="tiny">
-              I’m an ETE student at CUET with a strong interest in secure systems, practical networking,
-              and analytical design approaches. I like building projects that combine control, automation,
-              and engineering problem-solving.
+              I’m an ETE student at CUET with interest in secure systems, networking fundamentals,
+              and MATLAB-based engineering analysis. I like building projects where automation and
+              reliability matter.
             </div>
           </div>
         </div>
@@ -530,8 +528,8 @@
           <div class="card-inner">
             <div style="font-weight:900; margin-bottom:6px;">Currently Working On</div>
             <div class="tiny">
-              Improving project documentation, strengthening cybersecurity fundamentals, and exploring
-              MATLAB-based analysis for engineering design decisions.
+              Strengthening cybersecurity basics, improving documentation, and exploring
+              MATLAB tools for design decisions.
             </div>
           </div>
         </div>
@@ -540,6 +538,7 @@
   </header>
 
   <main class="container">
+    <!-- ====== ABOUT ====== -->
     <section id="about">
       <div class="section-head">
         <div>
@@ -553,12 +552,13 @@
           <p class="muted" style="margin:0; line-height:1.8;">
             Hello! I’m <b>A.N.M Sammaul Islam Siam</b>, studying in the <b>Department of ETE at CUET</b>.
             My interests include <b>Cybersecurity</b>, <b>Networking</b>, and <b>Engineering Design & Analysis with MATLAB</b>.
-            I enjoy applying theory to real systems—especially where control, automation, and system reliability matter.
+            I enjoy applying theory to real systems—especially where control, automation, and reliability matter.
           </p>
         </div>
       </div>
     </section>
 
+    <!-- ====== SKILLS ====== -->
     <section id="skills">
       <div class="section-head">
         <div>
@@ -571,11 +571,11 @@
         <div class="card">
           <div class="card-inner">
             <div style="font-weight:900; margin-bottom:8px;">Cybersecurity</div>
-            <div class="tiny">Security basics • threat awareness • secure thinking</div>
+            <div class="tiny">Threat awareness • safe practices • security mindset</div>
             <div class="row">
-              <span class="chip">Security Mindset</span>
-              <span class="chip">Safe Practices</span>
               <span class="chip">Awareness</span>
+              <span class="chip">Safe Practices</span>
+              <span class="chip">Security Thinking</span>
             </div>
           </div>
         </div>
@@ -585,9 +585,9 @@
             <div style="font-weight:900; margin-bottom:8px;">Networking</div>
             <div class="tiny">Protocols • connectivity • system communication</div>
             <div class="row">
-              <span class="chip">Networking Basics</span>
               <span class="chip">Protocols</span>
-              <span class="chip">System Links</span>
+              <span class="chip">Connectivity</span>
+              <span class="chip">Network Basics</span>
             </div>
           </div>
         </div>
@@ -595,78 +595,106 @@
         <div class="card">
           <div class="card-inner">
             <div style="font-weight:900; margin-bottom:8px;">MATLAB</div>
-            <div class="tiny">Engineering design • analysis • simulation workflow</div>
+            <div class="tiny">Modeling • analysis • engineering design workflow</div>
             <div class="row">
               <span class="chip">Modeling</span>
-              <span class="chip">Analysis</span>
               <span class="chip">Simulation</span>
+              <span class="chip">Analysis</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ====== PROJECTS (with placeholders) ====== -->
     <section id="projects">
       <div class="section-head">
         <div>
-          <h2>Project</h2>
-          <p>Highlighted build</p>
+          <h2>Projects</h2>
+          <p>Featured work + space for more</p>
         </div>
       </div>
 
-      <div class="card">
-        <div class="media">
-          <img src="project-1.jpeg" alt="6DOF App-controlled Industrial Manipulator project image" />
-          <div class="badge"><span class="spark"></span> Featured Project</div>
+      <div class="grid-2">
+        <!-- Project 1 -->
+        <div class="card">
+          <div class="media">
+            <img src="project-1.jpeg" alt="6DOF App-controlled Industrial Manipulator project image" />
+            <div class="badge"><span class="spark"></span> Project #1</div>
+          </div>
+          <div class="card-inner">
+            <h3 style="margin:0; font-size:16px;">A 6DOF App-controlled Industrial Manipulator</h3>
+            <p class="tiny" style="margin:10px 0 0;">
+              An industrial-style robotic arm with <b>6 degrees of freedom</b> controlled via an app interface.
+              Focus: smooth control, reliable motion, and practical engineering build.
+            </p>
+            <div class="row" style="margin-top:12px;">
+              <span class="chip">6DOF</span>
+              <span class="chip">Robotics</span>
+              <span class="chip">App Control</span>
+              <span class="chip">Automation</span>
+            </div>
+          </div>
         </div>
-        <div class="card-inner">
-          <h3 style="margin:0; font-size:16px; letter-spacing:.2px;">
-            A 6DOF App-controlled Industrial Manipulator
-          </h3>
 
-          <p class="tiny" style="margin:10px 0 0;">
-            An industrial-style robotic arm with <b>6 degrees of freedom</b> controlled through an app interface.
-            The goal was smooth control, reliable motion, and a practical, engineering-focused build approach.
-          </p>
-
-          <div class="row" style="margin-top:12px;">
-            <span class="chip">6DOF Robotics</span>
-            <span class="chip">App Control</span>
-            <span class="chip">Automation</span>
-            <span class="chip">Engineering Design</span>
+        <!-- Placeholder: Add more projects -->
+        <div class="card placeholder">
+          <div class="inside">
+            <div class="plus">+</div>
+            <div style="font-weight:900; margin-bottom:6px;">Add More Projects</div>
+            <div class="tiny">
+              Upload a new image like <b>project-2.jpeg</b> and copy the Project card
+              to add Project #2, #3, etc.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ====== CERTIFICATES (with placeholders) ====== -->
     <section id="certificates">
       <div class="section-head">
         <div>
-          <h2>Certificate</h2>
-          <p>Learning & verification</p>
+          <h2>Certificates</h2>
+          <p>Verified learning + space for more</p>
         </div>
       </div>
 
-      <div class="card">
-        <div class="media" style="aspect-ratio: 16/10;">
-          <img src="certificate-1.jpeg" alt="Certificate: Engineering design and analysis with MATLAB" />
-          <div class="badge"><span class="spark"></span> Certificate</div>
+      <div class="grid-2">
+        <!-- Certificate 1 -->
+        <div class="card">
+          <div class="media small">
+            <img src="certificate-1.jpeg" alt="Certificate: Engineering design and analysis with MATLAB" />
+            <div class="badge"><span class="spark"></span> Certificate #1</div>
+          </div>
+          <div class="card-inner">
+            <h3 style="margin:0; font-size:16px;">Engineering Design and Analysis with MATLAB</h3>
+            <p class="tiny" style="margin:10px 0 0;">
+              Focused on engineering workflows using MATLAB for modeling, analysis, and design decision-making.
+            </p>
+            <div class="row" style="margin-top:12px;">
+              <span class="chip">MATLAB</span>
+              <span class="chip">Modeling</span>
+              <span class="chip">Analysis</span>
+            </div>
+          </div>
         </div>
 
-        <div class="card-inner">
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-            <p style="font-weight:900; margin:0; font-size:15px; line-height:1.3;">
-              Engineering Design and Analysis with MATLAB
-            </p>
-            <span class="tag">Verified</span>
+        <!-- Placeholder: Add more certificates -->
+        <div class="card placeholder">
+          <div class="inside">
+            <div class="plus">+</div>
+            <div style="font-weight:900; margin-bottom:6px;">Add More Certificates</div>
+            <div class="tiny">
+              Upload a new image like <b>certificate-2.jpeg</b> and copy the Certificate card
+              to add Certificate #2, #3, etc.
+            </div>
           </div>
-          <p class="tiny" style="margin:8px 0 0;">
-            Focused on applying MATLAB tools for engineering workflows including modeling, analysis, and design decision-making.
-          </p>
         </div>
       </div>
     </section>
 
+    <!-- ====== CONTACT ====== -->
     <section id="contact">
       <div class="section-head">
         <div>
@@ -680,7 +708,7 @@
           <div class="card-inner">
             <div style="font-weight:900; margin-bottom:8px;">Links</div>
             <p class="tiny" style="margin:0 0 10px;">
-              Feel free to connect with me on LinkedIn or check my GitHub projects.
+              Feel free to connect with me or explore my work.
             </p>
 
             <div class="row">
@@ -697,9 +725,8 @@
               Email:
               <a href="mailto:siamcuet21@gmail.com" style="text-decoration:underline;">siamcuet21@gmail.com</a>
             </p>
-
             <div class="tiny">
-              (Tip: If the mail doesn’t open, double-check spelling. Also you can change the address anytime.)
+              If you meant <b>gmail.com</b> (not gamil.com), just change it here.
             </div>
           </div>
         </div>
